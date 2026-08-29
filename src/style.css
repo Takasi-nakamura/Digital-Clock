@@ -1,0 +1,126 @@
+@font-face {
+  font-family: 'DSEG7-Classic';
+  src: url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7Classic-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+:root {
+  --bg: #000;
+  --surface: #090909;
+  --text: #fff;
+  --muted: #888;
+  --border: rgba(255,255,255,.09);
+  --control: rgba(255,255,255,.06);
+  --hover: rgba(255,255,255,.11);
+  --active: #fff;
+  --active-text: #000;
+  color-scheme: dark;
+}
+
+html[data-theme='light'] {
+  --bg: #f4f4f6;
+  --surface: #fff;
+  --text: #111;
+  --muted: #777;
+  --border: rgba(0,0,0,.09);
+  --control: rgba(0,0,0,.055);
+  --hover: rgba(0,0,0,.1);
+  --active: #111;
+  --active-text: #fff;
+  color-scheme: light;
+}
+
+html[data-theme='dark'] { color-scheme: dark; }
+
+@media (prefers-color-scheme: light) {
+  html[data-theme='system'] {
+    --bg: #f4f4f6; --surface: #fff; --text: #111; --muted: #777;
+    --border: rgba(0,0,0,.09); --control: rgba(0,0,0,.055); --hover: rgba(0,0,0,.1);
+    --active: #111; --active-text: #fff; color-scheme: light;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body, #root { width: 100%; min-height: 100%; margin: 0; }
+body {
+  min-height: 100svh;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+  transition: background .25s ease, color .25s ease;
+}
+button { font: inherit; }
+button:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+
+.app-shell {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+}
+
+.clock-card {
+  width: min(1080px, 100%);
+  min-width: 0;
+  padding: clamp(24px, 5vw, 60px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: 0 30px 100px rgba(0,0,0,.24);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(40px, 7vw, 72px);
+}
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand-mark {
+  width: 40px; height: 40px; flex: 0 0 40px; display: grid; place-items: center;
+  border-radius: 12px; background: var(--text); color: var(--bg);
+  font-size: 11px; font-weight: 800; letter-spacing: -.05em;
+}
+.eyebrow { margin: 0 0 3px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .17em; }
+.brand h1 { margin: 0; font-size: 16px; line-height: 1.2; letter-spacing: -.02em; }
+
+.theme-switcher { display: flex; gap: 3px; padding: 4px; border: 1px solid var(--border); border-radius: 14px; background: var(--control); }
+.theme-switcher button {
+  min-width: 66px; padding: 8px 10px; border: 0; border-radius: 10px;
+  background: transparent; color: var(--muted); font-size: 11px; font-weight: 700;
+  cursor: pointer; transition: background .16s ease, color .16s ease, transform .12s ease;
+}
+.theme-switcher button:hover { background: var(--hover); color: var(--text); }
+.theme-switcher button:active { transform: scale(.96); }
+.theme-switcher button.active { background: var(--active); color: var(--active-text); }
+
+.clock-wrap { width: 100%; min-width: 0; display: flex; justify-content: center; overflow: hidden; }
+.clock {
+  width: max-content; max-width: 100%; display: flex; align-items: baseline; justify-content: center;
+  color: var(--text); font-family: 'DSEG7-Classic', monospace; font-size: clamp(42px, 10.5vw, 144px);
+  font-weight: normal; line-height: 1; letter-spacing: 0; white-space: nowrap; user-select: none;
+}
+.seconds { font-size: .56em; }
+.date { margin-top: clamp(28px, 4vw, 40px); text-align: center; color: var(--muted); font-size: clamp(13px, 1.8vw, 17px); line-height: 1.5; letter-spacing: .06em; overflow-wrap: anywhere; }
+.timezone { margin-top: 8px; text-align: center; color: var(--muted); font-size: 9px; font-weight: 650; letter-spacing: .12em; opacity: .65; overflow-wrap: anywhere; }
+
+@media (max-width: 640px) {
+  .app-shell { padding: 12px; }
+  .clock-card { padding: 22px 16px 28px; border-radius: 22px; }
+  .header { align-items: stretch; flex-direction: column; margin-bottom: 44px; }
+  .theme-switcher { width: 100%; }
+  .theme-switcher button { flex: 1 1 0; min-width: 0; }
+  .clock { font-size: clamp(32px, 13.5vw, 78px); }
+  .date { font-size: 12px; letter-spacing: .025em; }
+}
+
+@media (max-width: 380px) {
+  .clock-card { padding-left: 12px; padding-right: 12px; }
+  .clock { font-size: clamp(28px, 12.8vw, 48px); }
+  .brand-mark { width: 36px; height: 36px; flex-basis: 36px; border-radius: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
