@@ -1,6 +1,11 @@
 @font-face {
   font-family: 'DSEG7-Classic';
-  src: url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7Classic-Regular.woff2') format('woff2');
+  src:
+    url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -101,7 +106,7 @@ button:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
 .clock {
   width: max-content; max-width: 100%; display: flex; align-items: baseline; justify-content: center;
   color: var(--text); font-family: 'DSEG7-Classic', monospace; font-size: clamp(42px, 10.5vw, 144px);
-  font-weight: normal; line-height: 1; letter-spacing: 0; white-space: nowrap; user-select: none;
+  font-weight: normal; font-style: normal; line-height: 1; letter-spacing: 0; white-space: nowrap; user-select: none;
 }
 .seconds { font-size: .56em; }
 .date { margin-top: clamp(28px, 4vw, 40px); text-align: center; color: var(--muted); font-size: clamp(13px, 1.8vw, 17px); line-height: 1.5; letter-spacing: .06em; overflow-wrap: anywhere; }
