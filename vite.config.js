@@ -6,7 +6,6 @@ export default defineConfig({
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg'],
       manifest: {
         name: 'Digital Clock',
         short_name: 'Clock',
@@ -17,8 +16,8 @@ export default defineConfig({
         start_url: './',
         scope: './',
         icons: [
-          { src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
-          { src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'maskable' }
+          { src: './icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
+          { src: './icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'maskable' }
         ]
       }
     })
